@@ -1,0 +1,33 @@
+METODOS DE CONVERSÃO QT DESING 
+
+
+==================================Não muito eficiente converte uma vez de .ui para .py causando perda nas auteração .py
+
+
+Criar o design no qt designer, salvar com .ui, abrir o vs code na pasta que salvou, e converter para .py
+
+pyuic6 -x teste.ui -o testui.py
+
+==================================Extremamente Eficiente Converte dinamicamente de .ui para .py
+
+import sys
+from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6 import uic
+
+
+class MainWindow(QtWidgets.QMainWindow):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        uic.loadUi("teste.ui", self) #NOME DO ARQUIVO .ui para ser convertido dinamicamente
+
+
+app = QtWidgets.QApplication(sys.argv)
+window = MainWindow()
+window.show()
+app.exec()
+
+======================================== Resumindo
+
+crie uma sintaxe base no QT Desing salve, crie um codigo .py para converter o .ui
+dinamicamente e então code normalmente, podendo alterar tanto o design quanto o código
